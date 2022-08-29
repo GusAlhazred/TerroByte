@@ -49,8 +49,6 @@ header{
                     text-decoration: none;
     
                     border-radius: 10%;
-                    // backdrop-filter: ;
-                    // background-color: aqua;
     
                     font-family: 'Amatic SC', cursive;
                     font-size:1rem;
@@ -83,6 +81,7 @@ header{
 
 .usuario{
     justify-content: center;
+    cursor: pointer;
     position: relative;
     top:0;
     &::after{
@@ -179,4 +178,28 @@ main{
 .imgCositas{
     object-fit: cover;
     z-index: -2;
+}
+
+.menuDesplegado{
+    // background-color: transparent;
+    backdrop-filter: blur(14px);
+
+    transition: .3s;
+    
+    border: .1rem #bbb;
+    border-style: none solid solid none;
+    border-radius: 10px;
+    
+
+    position:absolute;
+    // top:0;
+    // right: 10%;
+
+
+    display:flex;
+    flex-direction: row-reverse;
+
+
+    z-index: 4;
+
 }

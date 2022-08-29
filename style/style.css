@@ -91,6 +91,7 @@ header .cabecera nav ul li:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  cursor: pointer;
   position: relative;
   top: 0;
 }
@@ -200,5 +201,24 @@ main {
   -o-object-fit: cover;
      object-fit: cover;
   z-index: -2;
+}
+
+.menuDesplegado {
+  -webkit-backdrop-filter: blur(14px);
+          backdrop-filter: blur(14px);
+  -webkit-transition: .3s;
+  transition: .3s;
+  border: .1rem #bbb;
+  border-style: none solid solid none;
+  border-radius: 10px;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  z-index: 4;
 }
 /*# sourceMappingURL=style.css.map */
