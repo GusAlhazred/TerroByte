@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina con Loggin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Anton&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style/style.css">
+
+</head>
+
+<body>
+    <header class="">
+        <div class =" cabecera d-flex row container-fluid">
+            <div class="d-flex col-2 contLogo">
+                <img src="./img/logo.png" alt="" class="imagenCabecera logo">
+    
+            </div>
+            <h1 class="col-5 titulo">Terrobyte</h1>
+            <nav class="d-flex col-3">
+                <ul class="d-flex">
+                    <li>Home</li>
+                    <li>Arte</li>
+                    <li>Musica</li>
+                    <li>Actividades</li>
+                    <li><i class="fa-solid fa-moon"></i></li>
+                </ul>
+            </nav>
+            <div class="d-flex usuario col-2">
+                <img src="./img/user-pic-default.png" alt="" class="imagenCabecera userPic">
+    
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Portada -->
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="./img/ciudad.jpg" class="d-block w-50" alt="...">
+                    <div class="fondo skew1 w-70">
+                    </div>
+                    <div class="carousel-caption d-flex d-md-block w-25 textoCarrousel fontAmatic">
+                        <h2 class="subtitulo">Arte</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum quo blanditiis exercitationem, culpa explicabo atque repellat, dolore eaque modi provident optio. Temporibus fuga ipsa incidunt esse, velit repellat impedit iure!</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./img/bass.jpg" class="d-block w-50" alt="...">
+                    <div class="fondo skew2 w-70">
+                    </div>
+                    <div class="carousel-caption d-none d-md-block w-25 textoCarrousel fontAnton">
+                        <h2 class="subtitulo">Musica</h2>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga, quos optio. Sed assumenda sunt quaerat in soluta ab doloremque veritatis adipisci natus sint, voluptas excepturi!</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./img/sk8.jpg" class="d-block w-50" alt="...">
+                    <div class="fondo skew3 w-70">
+                    </div>
+                    <div class="carousel-caption d-none d-md-block w-25 textoCarrousel fontAmatic">
+                        <!-- <div class="w-75"> -->
+                            <h2 class="subtitulo" >Actividades</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis est illo expedita impedit in vel nemo aspernatur cum dolores magnam?</p>
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <section class="d-flex mt-3">
+            <!-- <div class="fondo2 skew4"></div> -->
+            <div class="container-fluid w-50 fontAnton cositas">
+                <h2>Sintomas de la gripe comun:</h2>
+                <p>Los sintomas de la gripe comun pueden variar de persona a persona, pero los sintomas mas comunes y cientificamente aceptasdos suelen ser:</p>
+                <ul>
+                    <li>Dolores corporales</li>
+                    <li>Dolor de cabeza</li>
+                    <li>Perdida de gusto y olfato</li>
+                    <li>Aputazarse un poco</li>
+                    <li>Probar comidas locas</li>
+                </ul>
+            </div>
+            <img src="./img/biohazzard.jpg" alt="" class="w-50 imgCositas">
+        </section>
+
+        <section class="d-flex mt-3">
+
+        </section>
+
+
+
+    </main>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+    integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+    integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
+</script>
+
+</html>
