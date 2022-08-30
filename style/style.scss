@@ -8,6 +8,31 @@ html{
 body{
     background-color: #1115;
 }
+
+@mixin img-cabecera{
+    height: 2rem;
+    aspect-ratio: 1/1;
+    // width: 2rem;
+    border-radius: 50%;
+}
+
+@mixin lista-nav{
+    padding: 0.2rem;
+    list-style: none;
+    text-decoration: none;
+
+    border-radius: 10%;
+
+    font-family: 'Amatic SC', cursive;
+    font-size:1rem;
+    text-shadow: 0 0 .5rem #bbb,
+                    0 0 .3rem #bbb;
+
+    // font-size: 0.6rem;
+    transition: .3s;
+}
+
+
 header{
     height: 3rem;
     width: 100vw;
@@ -25,10 +50,7 @@ header{
         align-items: center;
         
         .imagenCabecera{
-            height: 2rem;
-            aspect-ratio: 1/1;
-            // width: 2rem;
-            border-radius: 50%;
+            @include img-cabecera;
         }
         .contLogo{
             justify-content: center;
@@ -44,19 +66,8 @@ header{
             ul{
                 margin: 0;
                 li{
-                    padding: 0.2rem;
-                    list-style: none;
-                    text-decoration: none;
-    
-                    border-radius: 10%;
-    
-                    font-family: 'Amatic SC', cursive;
-                    font-size:1rem;
-                    text-shadow: 0 0 .5rem #bbb,
-                                 0 0 .3rem #bbb;
-    
-                    // font-size: 0.6rem;
-                    transition: .3s;
+                    @include lista-nav;
+                    
                     &:hover{
                         background-color: rgba(204, 204, 204, 0.2);
                         backdrop-filter: blur(3px);
@@ -64,7 +75,7 @@ header{
                         border: .1rem rgba(204, 204, 204, 0.856);
                         border-style: none solid solid none;
                         transform: scale(1.4);
-    
+
                         margin-left: 1rem;
                         margin-right: 1rem;
 
@@ -191,9 +202,9 @@ main{
     border-radius: 10px;
     
 
-    position:absolute;
-    // top:0;
-    // right: 10%;
+    position:fixed;
+    top:0;
+    right: 7%;
 
 
     display:flex;
@@ -202,4 +213,23 @@ main{
 
     z-index: 4;
 
+    .imagen-Menu{
+        @include img-cabecera;
+        margin: 0.2rem;
+    }
+    ul{
+        li{
+            @include lista-nav;
+            a{
+                text-decoration: none;
+                color:#333;
+            }
+            &:hover{
+                transform: scale(1.2);
+            }
+        }
+    }
+}
+.escondido{
+    visibility: hidden;
 }

@@ -211,7 +211,9 @@ main {
   border: .1rem #bbb;
   border-style: none solid solid none;
   border-radius: 10px;
-  position: absolute;
+  position: fixed;
+  top: 0;
+  right: 7%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -220,5 +222,38 @@ main {
       -ms-flex-direction: row-reverse;
           flex-direction: row-reverse;
   z-index: 4;
+}
+
+.menuDesplegado .imagen-Menu {
+  height: 2rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  margin: 0.2rem;
+}
+
+.menuDesplegado ul li {
+  padding: 0.2rem;
+  list-style: none;
+  text-decoration: none;
+  border-radius: 10%;
+  font-family: 'Amatic SC', cursive;
+  font-size: 1rem;
+  text-shadow: 0 0 .5rem #bbb, 0 0 .3rem #bbb;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.menuDesplegado ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.menuDesplegado ul li:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+.escondido {
+  visibility: hidden;
 }
 /*# sourceMappingURL=style.css.map */
