@@ -1,0 +1,33 @@
+[
+    {
+        "id": 1,
+        "nombre": "Gustavo",
+        "pass":"1234",
+        "mail":"gmartinez@gruposarasa.com",
+        "foto": ""
+    },{
+        "id": 2,
+        "nombre": "Facu",
+        "pass":"1234",
+        "mail":"facu@gruposarasa.com",
+        "foto": ""
+    },{
+        "id": 3,
+        "nombre": "Ricky",
+        "pass":"1234",
+        "mail":"ricky@gruposarasa.com",
+        "foto": ""
+    },{
+        "id": 4,
+        "nombre": "Vicky",
+        "pass":"1234",
+        "mail":"vsalinas@gruposarasa.com",
+        "foto": ""
+    },{
+        "id": 5,
+        "nombre": "Claudia",
+        "pass":"1234",
+        "mail":"claudia@gruposarasa.com",
+        "foto": ""
+    }
+]
