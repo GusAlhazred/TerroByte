@@ -1,3 +1,13 @@
+class usuario {
+    constructor(id, nombre, pass, mail, foto){
+        this.id=id
+        this.nombre= nombre;
+        this.pass= pass,
+        this.mail=mail;
+        this.foto= foto;
+    }
+}
+
 
 const cargarCuentasJson = async () => {
     const respuesta = await fetch("./script/json/cuentas.json");
@@ -214,12 +224,14 @@ const generarMenu = () => {
     menuUsuario.appendChild(generarListaMenu());
 }
 
-const verificarSiExisteElUsuario =  (usuario, pass, cuentas) => {
+const verificarSiExisteElUsuario = async () => {
     
+    const usuarioIngresado = document.querySelector('[data-txt="usuario"]');
+    const passIngresada = document.querySelector('[data-txt="pass"]');
+    const cuentas = await cargarCuentasJson();
+
     for (usuarioGuardado of cuentas){
-        console.log(usuarioGuardado.nombre)
-        console.log(usuarioGuardado.pass)
-        if ((usuario.value === usuarioGuardado.nombre) && (pass.value === usuarioGuardado.pass)){
+        if ((usuarioIngresado.value === usuarioGuardado.nombre) && (passIngresada.value === usuarioGuardado.pass)){
             return (true)
             // usuarioAceptado = cuentas.indexOf(usuarioIngresado.value)
             // break
@@ -230,19 +242,37 @@ const verificarSiExisteElUsuario =  (usuario, pass, cuentas) => {
 
 }
 
+const escribirJson = async () => {
+    const usuarioIngresado = document.querySelector('[data-txt="usuario"]');
+    const passIngresada = document.querySelector('[data-txt="pass"]');
+    const cuentas = await cargarCuentasJson();
+
+    const id = await cuentas.length+1;
+    const nuevoUsuario = new usuario(id, usuarioIngresado.value, passIngresada.value, "", "");
+
+    await cuentas.push(nuevoUsuario);
+    const devolverAlArchivo= JSON.stringify(cuentas);
+    console.log(devolverAlArchivo)
+    //No me esta tomando esto de Node.js =( el require
+    // const fs = require("fs");
+    // fs.writeFile("./script/json/cuentas.json", devolverAlArchivo, "utf-8",function (err) {
+    //     if (err) throw err;
+    //     console.log('Replaced!');})
+}
 
 const registrarse = async () => {
-    
+    const existe = await verificarSiExisteElUsuario();
+    console.log(existe)
+    if (!existe){
+        escribirJson();
+    }
 
 }
 
 const logear = async () => {
-    const usuarioIngresado = document.querySelector('[data-txt="usuario"]');
-    const passIngresada = document.querySelector('[data-txt="pass"]');
-    const cuentas = await cargarCuentasJson();
     // let validarIngreso = false
     // let usuarioAceptado;
-    console.log(cuentas)
+    // console.log(cuentas)
 
     // for (usuarioGuardado of cuentas){
     //     console.log(usuarioGuardado.nombre)
@@ -254,9 +284,10 @@ const logear = async () => {
     //     }
     //     // (usuarioIngresado.value === usuarioGuardado.nombre) && (passIngresada.value === usuarioGuardado.pass) && (validarIngreso=true) && (usuarioAceptado = cuentas.indexOf(usuarioIngresado.value)) && (break);
     // }
-    logeado = verificarSiExisteElUsuario(usuarioIngresado, passIngresada, cuentas)
+    // logeado = verificarSiExisteElUsuario(usuarioIngresado, passIngresada, cuentas)
+    logeado = verificarSiExisteElUsuario()
     console.log(logeado)
-    logeado? alert(`Bienvenido ${usuarioIngresado.value}`) : alert(`Usuario invalido`);
+    logeado? alert(`Bienvenido`) : alert(`Usuario invalido`);
     contModal.classList.add("escondido")
     
     generarMenu();
