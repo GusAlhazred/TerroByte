@@ -15,6 +15,7 @@ body{
     // aspect-ratio: 1/1;
     width: 2rem;
     border-radius: 50%;
+    object-fit:cover;
 }
 
 @mixin lista-nav{

@@ -4,13 +4,13 @@
         "nombre": "Gustavo",
         "pass":"1234",
         "mail":"gmartinez@gruposarasa.com",
-        "foto": ""
+        "foto": "../img/codding.jpg"
     },{
         "id": 2,
         "nombre": "Facu",
         "pass":"1234",
         "mail":"facu@gruposarasa.com",
-        "foto": ""
+        "foto": "../img/sk8.jpg"
     },{
         "id": 3,
         "nombre": "Ricky",

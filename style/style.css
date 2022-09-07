@@ -34,6 +34,8 @@ header .cabecera .imagenCabecera {
   height: 2rem;
   width: 2rem;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 header .cabecera .contLogo {
@@ -228,6 +230,8 @@ main {
   height: 2rem;
   width: 2rem;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
   margin: 0.5rem;
 }
 

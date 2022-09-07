@@ -8,11 +8,15 @@ class usuario {
     }
 }
 
+let usuarioLogeado = "";
+//const fs = require ("fs");
+//No funca. Necesito investigar mas sobre Node.js
 
+//Carga el JSON de Cuentas
 const cargarCuentasJson = async () => {
     const respuesta = await fetch("./script/json/cuentas.json");
     const datos = await respuesta.json()
-    console.log(datos)
+    // console.log(datos)
 
     return(datos);
 }
@@ -59,11 +63,44 @@ const botonesUsuario = [
 
 let menuUsuarioDesplegado = false;
 
+
+//Genera foto deslogeado
+const generarFotoAnonimo = (img) => {
+    img.src = "./img/user-pic-default.png";
+    return(img.src)
+}
+
+//Genera foto usuario cuando hay una cargada en el JSON. Sino, asigna la foto de deslogeado
+const generarFotoUsuario = async (img) => {
+    const usuarios = await cargarCuentasJson ();
+    // const falopa = usuarios[usuarioLogeado]
+
+    console.log(usuarios)
+    console.log(usuarioLogeado)
+    console.log(usuarios[usuarioLogeado])
+    // console.log(falopa.foto)
+    console.log(usuarios[usuarioLogeado].foto)
+    img.src=(usuarios[usuarioLogeado]).foto
+    img.src === "" && (img.src = generarFotoAnonimo(img));
+    return(img.src)
+
+}
+
+//Si el usuario esta logeado, crea la foto en el head
+const generarFotoUsuarioCorrespondiente = async () => {
+    const avatar = document.querySelector(".userPic");
+    const usuarios = await cargarCuentasJson();
+    logeado? (avatar.src = await usuarios[usuarioLogeado].foto) : avatar.src=generarFotoAnonimo(avatar);
+} 
+
+
+
+//Oculta los botones del Menu de Usuario (Login, Reg, Logout) dependiendo si esta logeado
 const ocultarBotonCorrespondiente = () => {
     const btnLogear = document.querySelector("[data-btn='Loggin']")
     const btnRegistrarse = document.querySelector("[data-btn='Registrarse']")
     const btnLogout = document.querySelector("[data-btn='Logout']")
-    console.log(btnLogear.classList)
+    // console.log(btnLogear.classList)
     
     logeado? 
         btnLogear.classList.add("escondido") || btnRegistrarse.classList.add("escondido") || btnLogout.classList.remove("escondido") :
@@ -71,9 +108,6 @@ const ocultarBotonCorrespondiente = () => {
 
 }
 
-
-
-// logear()
 
 const generarModal = (e) => {
     // e.preventDefault();
@@ -157,10 +191,13 @@ const generarModal = (e) => {
 
 const deslogearse = () => {
     logeado =false;
+    generarFotoUsuarioCorrespondiente();
     generarMenu();
     alert("No' vemo', papa!")
 }
 
+
+//Genera botones del menu de usuario (login, reg, logout) y los devuelve en un contenedor
 const generarBotonesMenuImg = () => {
     const contenedorBotones = document.createElement("div");
     for (botonEnArray of botonesUsuario){
@@ -181,12 +218,17 @@ const generarBotonesMenuImg = () => {
     return (contenedorBotones)
 }
 
-const generarSeccionImgParaMenu = () => {
+
+
+
+//Genera la parte de las fotos y menu de login del usuario para el menu de usuario
+const generarSeccionImgParaMenu = async () => {
     const contenedor = document.createElement("div")
     const contenedorBotones = document.createElement("div")
     const img = document.createElement("img");
     img.createAttribute = "src";
-    img.src = "./img/user-pic-default.png";
+    logeado? img.src = await generarFotoUsuario(img) : img.src= await generarFotoAnonimo(img)
+    console.log(img)
     img.classList.add("imagen-Menu");
     img.addEventListener("click", toogleMenu)
 
@@ -199,6 +241,8 @@ const generarSeccionImgParaMenu = () => {
     return(contenedor)
 }
 
+
+//Genera lista del Menu de usuario
 const generarListaMenu = () => {
     const menu = document.createElement("ul")
     if (logeado){
@@ -216,80 +260,99 @@ const generarListaMenu = () => {
         return menu
 }
 
-const generarMenu = () => {
+const generarMenu = async () => {
     menuUsuario.innerHTML= "";
     menuUsuario.classList.add("menuDesplegado", "escondido")
-    menuUsuario.appendChild(generarSeccionImgParaMenu());
+    menuUsuario.appendChild(await generarSeccionImgParaMenu());
     ocultarBotonCorrespondiente();
     menuUsuario.appendChild(generarListaMenu());
 }
 
+
+//Verifica si el usuario ingresado existe en le JSON y, si existe, cambia el valor de la variable usuarioLogeado al index del usuario que se verifico
 const verificarSiExisteElUsuario = async () => {
     
     const usuarioIngresado = document.querySelector('[data-txt="usuario"]');
     const passIngresada = document.querySelector('[data-txt="pass"]');
     const cuentas = await cargarCuentasJson();
+    let index = -1;
 
     for (usuarioGuardado of cuentas){
+        //Mejorar el modo de ver el index
+        index++
         if ((usuarioIngresado.value === usuarioGuardado.nombre) && (passIngresada.value === usuarioGuardado.pass)){
+            // usuarioLogeado = cuentas.indexOf({nombre: usuarioGuardado.nombre})
+            // usuarioLogeado = find(usuarioGuardado.nombre, cuentas.nombre)
+            usuarioLogeado = index;
+            // console.log(usuarioIngresado.value)
+            // console.log(usuarioGuardado.nombre)
+            
+            // console.log(usuarioLogeado)
             return (true)
-            // usuarioAceptado = cuentas.indexOf(usuarioIngresado.value)
             // break
         }
-        // (usuarioIngresado.value === usuarioGuardado.nombre) && (passIngresada.value === usuarioGuardado.pass) && (validarIngreso=true) && (usuarioAceptado = cuentas.indexOf(usuarioIngresado.value)) && (break);
+        // (usuarioIngresado.value === usuarioGuardado.nombre) && (passIngresada.value === usuarioGuardado.pass) && (validarIngreso=true) && (usuarioLogeado = cuentas.indexOf(usuarioIngresado.value)) && (break);
     }
     return(false)
 
 }
 
-const escribirJson = async () => {
-    const usuarioIngresado = document.querySelector('[data-txt="usuario"]');
-    const passIngresada = document.querySelector('[data-txt="pass"]');
-    const cuentas = await cargarCuentasJson();
+// const escribirJson = async () => {
+//     const usuarioIngresado = document.querySelector('[data-txt="usuario"]');
+//     const passIngresada = document.querySelector('[data-txt="pass"]');
+//     const cuentas = await cargarCuentasJson();
 
-    const id = await cuentas.length+1;
-    const nuevoUsuario = new usuario(id, usuarioIngresado.value, passIngresada.value, "", "");
+//     const id = await cuentas.length+1;
+//     const nuevoUsuario = new usuario(id, usuarioIngresado.value, passIngresada.value, "", "");
 
-    await cuentas.push(nuevoUsuario);
-    const devolverAlArchivo= JSON.stringify(cuentas);
-    console.log(devolverAlArchivo)
-    //No me esta tomando esto de Node.js =( el require
-    // const fs = require("fs");
-    // fs.writeFile("./script/json/cuentas.json", devolverAlArchivo, "utf-8",function (err) {
-    //     if (err) throw err;
-    //     console.log('Replaced!');})
-}
+//     await cuentas.push(nuevoUsuario);
+//     const devolverAlArchivo= JSON.stringify(cuentas);
+//     console.log(devolverAlArchivo)
+//     //No me esta tomando esto de Node.js =( el require
+//     // const fs = require("fs");
+//     fs.writeFile("./script/json/cuentas.json", devolverAlArchivo, (err) => {
+//         if (err){
+//             throw err
+//         }
+//     })
+// }
+//https://www.youtube.com/watch?v=1hpc70_OoAg&t=8005s
 
+
+//No hace nada por ahora. Pero quiero que escriba el JSON
 const registrarse = async () => {
     const existe = await verificarSiExisteElUsuario();
-    console.log(existe)
+    // console.log(existe)
     if (!existe){
-        escribirJson();
+        // escribirJson();
     }
 
 }
 
+
+//Logea al usuario ingresado, si se verifica que existe y le genera el menu de usuario
 const logear = async () => {
     // let validarIngreso = false
-    // let usuarioAceptado;
-    // console.log(cuentas)
+    // let usuarioLogeado;
+    // //console.log(cuentas)
 
     // for (usuarioGuardado of cuentas){
-    //     console.log(usuarioGuardado.nombre)
-    //     console.log(usuarioGuardado.pass)
+    //     //console.log(usuarioGuardado.nombre)
+    //     //console.log(usuarioGuardado.pass)
     //     if ((usuarioIngresado.value === usuarioGuardado.nombre) && (passIngresada.value === usuarioGuardado.pass)){
     //         logeado=true;
-    //         // usuarioAceptado = cuentas.indexOf(usuarioIngresado.value)
+    //         // usuarioLogeado = cuentas.indexOf(usuarioIngresado.value)
     //         break
     //     }
-    //     // (usuarioIngresado.value === usuarioGuardado.nombre) && (passIngresada.value === usuarioGuardado.pass) && (validarIngreso=true) && (usuarioAceptado = cuentas.indexOf(usuarioIngresado.value)) && (break);
+    //     // (usuarioIngresado.value === usuarioGuardado.nombre) && (passIngresada.value === usuarioGuardado.pass) && (validarIngreso=true) && (usuarioLogeado = cuentas.indexOf(usuarioIngresado.value)) && (break);
     // }
     // logeado = verificarSiExisteElUsuario(usuarioIngresado, passIngresada, cuentas)
     logeado = verificarSiExisteElUsuario()
-    console.log(logeado)
+    //console.log(logeado)
     logeado? alert(`Bienvenido`) : alert(`Usuario invalido`);
     contModal.classList.add("escondido")
     
+    generarFotoUsuarioCorrespondiente();
     generarMenu();
 
     // console.log(usuario.value)
@@ -309,6 +372,8 @@ const toogleMenu = () => {
 }   
 
 // generarModal(textosModal[0], textosModal[0]);
+
+generarFotoUsuarioCorrespondiente()
 generarMenu();
 triggerMenu.addEventListener("click", toogleMenu)
 // console.log(main)
