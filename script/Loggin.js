@@ -73,15 +73,8 @@ const generarFotoAnonimo = (img) => {
 //Genera foto usuario cuando hay una cargada en el JSON. Sino, asigna la foto de deslogeado
 const generarFotoUsuario = async (img) => {
     const usuarios = await cargarCuentasJson ();
-    // const falopa = usuarios[usuarioLogeado]
-
-    console.log(usuarios)
-    console.log(usuarioLogeado)
-    console.log(usuarios[usuarioLogeado])
-    // console.log(falopa.foto)
-    console.log(usuarios[usuarioLogeado].foto)
-    img.src=(usuarios[usuarioLogeado]).foto
-    img.src === "" && (img.src = generarFotoAnonimo(img));
+    img.src= usuarios[usuarioLogeado].foto
+    img.src === "http://127.0.0.1:5500/index.html" && (img.src = generarFotoAnonimo(img));
     return(img.src)
 
 }
@@ -90,7 +83,7 @@ const generarFotoUsuario = async (img) => {
 const generarFotoUsuarioCorrespondiente = async () => {
     const avatar = document.querySelector(".userPic");
     const usuarios = await cargarCuentasJson();
-    logeado? (avatar.src = await usuarios[usuarioLogeado].foto) : avatar.src=generarFotoAnonimo(avatar);
+    logeado? (avatar.src = generarFotoUsuario(avatar)) : avatar.src=generarFotoAnonimo(avatar);
 } 
 
 
@@ -100,7 +93,6 @@ const ocultarBotonCorrespondiente = () => {
     const btnLogear = document.querySelector("[data-btn='Loggin']")
     const btnRegistrarse = document.querySelector("[data-btn='Registrarse']")
     const btnLogout = document.querySelector("[data-btn='Logout']")
-    // console.log(btnLogear.classList)
     
     logeado? 
         btnLogear.classList.add("escondido") || btnRegistrarse.classList.add("escondido") || btnLogout.classList.remove("escondido") :
@@ -163,13 +155,8 @@ const generarModal = (e) => {
         contenedorBotones.classList.add("botonera")
     
     
-        //Juntar todo
-        // console.log(h2Titulo)
-        // console.log(contenedorUsuario)
-        // console.log(contenedorContraseña)
-        // console.log(contenedorBotones)
-        // console.log(modalLogin)
     
+        //Juntar Todo
         modalLogin.appendChild(h2Titulo)
         modalLogin.appendChild(contenedorUsuario)
         modalLogin.appendChild(contenedorContraseña)
