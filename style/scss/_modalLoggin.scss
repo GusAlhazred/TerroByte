@@ -1,0 +1,85 @@
+
+.mod{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(33, 33, 33, 0.856);
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    place-items: center;
+    // pointer-events: none;
+
+    z-index: 10;
+    .modalContainer{
+        display: flexbox;
+        justify-content: center;
+        transform: translate(50%);
+    
+        padding: 1rem;
+        border-radius: 1rem;
+        background-color: $sombrasClaras;
+        width: auto;
+        body.darkMode &{
+            background-color: $grisOscuro;
+        }
+        h2{
+            font-family: $fuenteSeria;
+            font-size:2rem;
+            text-shadow: .2rem .2rem 0 #fff;
+            body.darkMode &{
+                @include darkModeTitulos; 
+            }
+        }
+        
+        .contenedorInput{
+            text-align:end;
+            margin: .5rem;
+            label{
+                font-family: $fuenteInformal;
+                font-size:1rem;
+                margin-right: 0.5rem;
+                body.darkMode &{
+                    @include darkModeLetrasClaras; 
+                }
+            }
+            input{
+                width: 35vw;
+                font-family: $fuenteSeria;
+            }
+
+        }
+        .botonera{
+            display: flex;
+            justify-content: flex-end;
+            a{
+                text-decoration: none;
+                color: $grisOscuro;
+                font-family: $fuenteInformal;
+    
+                background-color: rgba(204, 204, 204, 0.2);
+                backdrop-filter: blur(3px);
+                padding: 0.2rem;
+                
+                border: .1rem rgba(204, 204, 204, 0.856);
+                border-radius: 10px;
+                border-style: none solid solid none;
+    
+                margin-left: .5rem;
+                margin-right: .5rem;
+                
+                text-shadow: none;
+                transition: .3s;
+                body.darkMode &{
+                    @include darkModeLetrasClaras; 
+                }
+                &:hover{
+                    background-color: rgba(254, 254, 254, 0.2);
+                    transform: scale(1.2);
+                }
+            }
+        }
+    }
+}

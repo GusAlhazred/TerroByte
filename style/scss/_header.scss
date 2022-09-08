@@ -1,0 +1,99 @@
+header{
+    height: 3rem;
+    width: 100vw;
+
+    position: fixed;
+    top: 0;
+    z-index: 3;
+    
+    box-shadow: .2rem .2rem .2rem $sombrasClaras;
+    backdrop-filter: blur(14px);
+    body.darkMode &{
+        box-shadow: .2rem .2rem .2rem $grisOscuro;
+    }
+    .cabecera{
+        align-items: center;
+        
+        .imagenCabecera{
+            @include img-cabecera;
+        }
+        .contLogo{
+            justify-content: center;
+        }
+        .titulo{
+            margin: 0;
+            font-family: $fuenteSeria;
+            text-shadow: .2rem .2rem 0 $blanco;
+            body.darkMode &{
+                @include darkModeTitulos
+            }
+        }
+        nav{
+            justify-content: end;
+            align-items: center;
+            ul{
+                margin: 0;
+                li{
+                    @include lista-nav;
+                    &:hover{
+                        background-color: rgba(204, 204, 204, 0.2);
+                        backdrop-filter: blur(3px);
+                        box-shadow: .2rem .2rem .2rem $sombrasClaras;
+                        border: .1rem rgba(204, 204, 204, 0.856);
+                        border-style: none solid solid none;
+                        transform: scale(1.4);
+
+                        // margin-left: 1rem;
+                        // margin-right: 1rem;
+
+                        text-shadow: none;
+                        body.darkMode &{
+                            background-color: rgba(204, 204, 204, 0.7);
+                            color: $grisOscuro
+                        }
+                    }
+                }
+                .btnDarkMode{
+                    margin-left: 1rem;
+                    box-sizing: content-box;
+                }
+            }
+        }
+    }
+}
+
+
+.usuario{
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    top:0;
+    // body.darkMode &{
+    //     filter: invert(1);
+    // }
+    &::after{
+        content: "";
+        position: absolute;
+        top:0;
+        left: 50%;
+
+        width: 2rem;
+        height: 2rem;
+
+        border-radius: 50%;
+        // aspect-ratio: 1/1;
+        transform: translate(-50%, -0%);
+        z-index: -1;
+        background-color: transparent;
+        filter: blur(15px);
+        transition: .3s;
+    }
+    &:hover{
+        &::after{
+            background-color: $sombrasClaras;
+            body.darkMode{
+                filter: blur(5px);
+            }
+        }
+    }
+}

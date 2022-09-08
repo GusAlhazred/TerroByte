@@ -18,10 +18,15 @@ header {
   position: fixed;
   top: 0;
   z-index: 3;
-  -webkit-box-shadow: .2rem .2rem .2rem #bbb;
-          box-shadow: .2rem .2rem .2rem #bbb;
+  -webkit-box-shadow: 0.2rem 0.2rem 0.2rem #bbb;
+          box-shadow: 0.2rem 0.2rem 0.2rem #bbb;
   -webkit-backdrop-filter: blur(14px);
           backdrop-filter: blur(14px);
+}
+
+body.darkMode header {
+  -webkit-box-shadow: 0.2rem 0.2rem 0.2rem #333;
+          box-shadow: 0.2rem 0.2rem 0.2rem #333;
 }
 
 header .cabecera {
@@ -46,8 +51,13 @@ header .cabecera .contLogo {
 
 header .cabecera .titulo {
   margin: 0;
-  font-family: 'Anton', sans-serif;
-  text-shadow: .2rem .2rem 0 #fff;
+  font-family: "Anton", sans-serif;
+  text-shadow: 0.2rem 0.2rem 0 #fff;
+}
+
+body.darkMode header .cabecera .titulo {
+  color: #fff;
+  text-shadow: .2rem .2rem 0 black;
 }
 
 header .cabecera nav {
@@ -68,26 +78,40 @@ header .cabecera nav ul li {
   list-style: none;
   text-decoration: none;
   border-radius: 10%;
-  font-family: 'Amatic SC', cursive;
+  font-family: "Amatic SC", cursive;
   font-size: 1rem;
-  text-shadow: 0 0 .5rem #bbb, 0 0 .3rem #bbb;
+  text-shadow: 0 0 0.5rem #bbb, 0 0 0.3rem #bbb;
   -webkit-transition: .3s;
   transition: .3s;
+}
+
+body.darkMode header .cabecera nav ul li {
+  color: #bbb;
+  text-shadow: 0 0 0.5rem #333, 0 0 0.4rem #333, 0 0 0.2rem #333;
 }
 
 header .cabecera nav ul li:hover {
   background-color: rgba(204, 204, 204, 0.2);
   -webkit-backdrop-filter: blur(3px);
           backdrop-filter: blur(3px);
-  -webkit-box-shadow: .2rem .2rem .2rem #bbb;
-          box-shadow: .2rem .2rem .2rem #bbb;
+  -webkit-box-shadow: 0.2rem 0.2rem 0.2rem #bbb;
+          box-shadow: 0.2rem 0.2rem 0.2rem #bbb;
   border: 0.1rem rgba(204, 204, 204, 0.856);
   border-style: none solid solid none;
   -webkit-transform: scale(1.4);
           transform: scale(1.4);
-  margin-left: 1rem;
-  margin-right: 1rem;
   text-shadow: none;
+}
+
+body.darkMode header .cabecera nav ul li:hover {
+  background-color: rgba(204, 204, 204, 0.7);
+  color: #333;
+}
+
+header .cabecera nav ul .btnDarkMode {
+  margin-left: 1rem;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
 
 .usuario {
@@ -121,20 +145,29 @@ header .cabecera nav ul li:hover {
   background-color: #bbb;
 }
 
-main {
-  margin-top: 4rem;
+.usuario:hover::after body.darkMode {
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
 }
 
-.carrousel-inner {
+main {
+  padding-top: 4rem;
+}
+
+body.darkMode main {
+  background-color: #333;
+}
+
+main .carrousel-inner {
   overflow: hidden;
 }
 
-.carrousel-inner img {
+main .carrousel-inner img {
   -o-object-fit: contain;
      object-fit: contain;
 }
 
-.fondo {
+main .fondo {
   background-color: #333;
   width: 80%;
   height: 100%;
@@ -143,22 +176,26 @@ main {
   right: -20%;
 }
 
-.skew1 {
+body.darkMode main .fondo {
+  background-color: #bbb;
+}
+
+main .skew1 {
   -webkit-transform: skewX(15deg);
           transform: skewX(15deg);
 }
 
-.skew2 {
+main .skew2 {
   -webkit-transform: skewX(-30deg);
           transform: skewX(-30deg);
 }
 
-.skew3 {
+main .skew3 {
   -webkit-transform: skewX(25deg);
           transform: skewX(25deg);
 }
 
-.textoCarrousel {
+main .textoCarrousel {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -171,46 +208,58 @@ main {
   z-index: 2;
 }
 
-.fontAmatic {
-  font-family: 'Amatic SC', cursive;
-}
-
-.fontAnton {
-  font-family: 'Anton', sans-serif;
-  text-shadow: .05rem .05rem 0 #777;
-}
-
-.cositas {
-  position: relative;
+body.darkMode main .textoCarrousel {
   color: #333;
 }
 
-.cositas::before {
+main .fontAmatic {
+  font-family: "Amatic SC", cursive;
+}
+
+main .fontAnton {
+  font-family: "Anton", sans-serif;
+  text-shadow: .05rem .05rem 0 #777;
+}
+
+main .paraPirin p, main .paraPirin h2, main .paraPirin ul, main .paraPirin li {
+  margin-left: 2rem;
+  position: relative;
+  top: 0;
+  left: 10;
+  color: #333;
+  background-color: transparent;
+  z-index: 2;
+}
+
+main .fondoParaPirin {
+  position: relative;
+}
+
+main .fondoParaPirin::before {
   content: "";
   -webkit-transform: skewX(350deg);
           transform: skewX(350deg);
-  z-index: -1;
+  z-index: 1;
   background-color: #bbb;
-  width: 140%;
+  width: 100vw;
   height: 100%;
   overflow: hidden;
   position: absolute;
   top: 0;
-  right: -20%;
-  left: auto;
+  right: -15vw;
 }
 
-.imgCositas {
+main .imgCositas {
   -o-object-fit: cover;
      object-fit: cover;
-  z-index: -2;
+  z-index: 0;
 }
 
 .menuDesplegado {
   -webkit-backdrop-filter: blur(14px);
           backdrop-filter: blur(14px);
   padding: .5rem;
-  border: .1rem #bbb;
+  border: 0.1rem #bbb;
   border-style: none solid solid none;
   border-radius: 10px;
   position: fixed;
@@ -240,16 +289,25 @@ main {
   list-style: none;
   text-decoration: none;
   border-radius: 10%;
-  font-family: 'Amatic SC', cursive;
+  font-family: "Amatic SC", cursive;
   font-size: 1rem;
-  text-shadow: 0 0 .5rem #bbb, 0 0 .3rem #bbb;
+  text-shadow: 0 0 0.5rem #bbb, 0 0 0.3rem #bbb;
   -webkit-transition: .3s;
   transition: .3s;
+}
+
+body.darkMode .menuDesplegado ul li {
+  color: #bbb;
+  text-shadow: 0 0 0.5rem #333, 0 0 0.4rem #333, 0 0 0.2rem #333;
 }
 
 .menuDesplegado ul li a {
   text-decoration: none;
   color: #333;
+}
+
+body.darkMode .menuDesplegado ul li a {
+  color: #bbb;
 }
 
 .menuDesplegado ul li:hover {
@@ -283,7 +341,7 @@ main {
 .contenedorBotones a {
   text-decoration: none;
   color: #333;
-  font-family: 'Amatic SC', cursive;
+  font-family: "Amatic SC", cursive;
   background-color: rgba(204, 204, 204, 0.2);
   -webkit-backdrop-filter: blur(3px);
           backdrop-filter: blur(3px);
@@ -300,10 +358,19 @@ main {
   transition: .3s;
 }
 
+body.darkMode .contenedorBotones a {
+  color: #bbb;
+  background-color: #333;
+}
+
 .contenedorBotones a:hover {
   background-color: rgba(254, 254, 254, 0.2);
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
+}
+
+body.darkMode .contenedorBotones a:hover {
+  color: #bbb;
 }
 
 .escondido {
@@ -340,10 +407,19 @@ main {
   width: auto;
 }
 
+body.darkMode .mod .modalContainer {
+  background-color: #333;
+}
+
 .mod .modalContainer h2 {
-  font-family: 'Anton', sans-serif;
+  font-family: "Anton", sans-serif;
   font-size: 2rem;
   text-shadow: .2rem .2rem 0 #fff;
+}
+
+body.darkMode .mod .modalContainer h2 {
+  color: #fff;
+  text-shadow: .2rem .2rem 0 black;
 }
 
 .mod .modalContainer .contenedorInput {
@@ -352,14 +428,18 @@ main {
 }
 
 .mod .modalContainer .contenedorInput label {
-  font-family: 'Amatic SC', cursive;
+  font-family: "Amatic SC", cursive;
   font-size: 1rem;
   margin-right: 0.5rem;
 }
 
+body.darkMode .mod .modalContainer .contenedorInput label {
+  color: #bbb;
+}
+
 .mod .modalContainer .contenedorInput input {
   width: 35vw;
-  font-family: 'Anton', sans-serif;
+  font-family: "Anton", sans-serif;
 }
 
 .mod .modalContainer .botonera {
@@ -374,7 +454,7 @@ main {
 .mod .modalContainer .botonera a {
   text-decoration: none;
   color: #333;
-  font-family: 'Amatic SC', cursive;
+  font-family: "Amatic SC", cursive;
   background-color: rgba(204, 204, 204, 0.2);
   -webkit-backdrop-filter: blur(3px);
           backdrop-filter: blur(3px);
@@ -387,6 +467,10 @@ main {
   text-shadow: none;
   -webkit-transition: .3s;
   transition: .3s;
+}
+
+body.darkMode .mod .modalContainer .botonera a {
+  color: #bbb;
 }
 
 .mod .modalContainer .botonera a:hover {

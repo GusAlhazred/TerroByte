@@ -1,355 +1,115 @@
+@import "./scss/variables";
+
 *{
     padding: 0;
     margin: 0;
 }
 html{
     font-size: 24px;
+
 }
 body{
     background-color: #1115;
     overflow-x: hidden;
-}
 
-@mixin img-cabecera{
-    height: 2rem;
-    // aspect-ratio: 1/1;
-    width: 2rem;
-    border-radius: 50%;
-    object-fit:cover;
-}
 
-@mixin lista-nav{
-    padding: 0.2rem;
-    list-style: none;
-    text-decoration: none;
-
-    border-radius: 10%;
-
-    font-family: 'Amatic SC', cursive;
-    font-size:1rem;
-    text-shadow: 0 0 .5rem #bbb,
-                    0 0 .3rem #bbb;
-
-    // font-size: 0.6rem;
-    transition: .3s;
 }
 
 
-header{
-    height: 3rem;
-    width: 100vw;
-
-    position: fixed;
-    top: 0;
-    // right: 0;
-    z-index: 3;
-    
-
-    
-    box-shadow: .2rem .2rem .2rem #bbb;
-    backdrop-filter: blur(14px);
-    .cabecera{
-        align-items: center;
-        
-        .imagenCabecera{
-            @include img-cabecera;
-        }
-        .contLogo{
-            justify-content: center;
-        }
-        .titulo{
-            margin: 0;
-            font-family: 'Anton', sans-serif;
-            text-shadow: .2rem .2rem 0 #fff;
-        }
-        nav{
-            justify-content: end;
-            align-items: center;
-            ul{
-                margin: 0;
-                li{
-                    @include lista-nav;
-                    
-                    &:hover{
-                        background-color: rgba(204, 204, 204, 0.2);
-                        backdrop-filter: blur(3px);
-                        box-shadow: .2rem .2rem .2rem #bbb;
-                        border: .1rem rgba(204, 204, 204, 0.856);
-                        border-style: none solid solid none;
-                        transform: scale(1.4);
-
-                        margin-left: 1rem;
-                        margin-right: 1rem;
-
-                        text-shadow: none;
-                    }
-                }
-            }
-        }
-        
-        
-    }
-}
-
-
-.usuario{
-    justify-content: center;
-    cursor: pointer;
-    position: relative;
-    top:0;
-    &::after{
-        content: "";
-        position: absolute;
-        top:0;
-        left: 50%;
-
-        width: 2rem;
-        height: 2rem;
-
-        border-radius: 50%;
-        // aspect-ratio: 1/1;
-        transform: translate(-50%, -0%);
-        z-index: -1;
-        background-color: transparent;
-        filter: blur(15px);
-        transition: .3s;
-    }
-    &:hover{
-        &::after{
-            background-color: #bbb;
-        }
-    }
-}
+@import "./scss/header";
 
 main{
-    margin-top: 4rem;
-}
-.carrousel-inner{
-    overflow: hidden;
-    img{
-        object-fit: contain;
+    body.darkMode &{
+        background-color: $grisOscuro;
     }
-}
-.fondo{
-    background-color: #333;
-    width: 80%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    right: -20%;
-}
-
-.skew1{
-    transform: skewX(15deg);
-    // box-shadow: -0.8rem 0 0 #1f1;
-}
-
-.skew2{
-    transform: skewX(-30deg);
-}
-
-.skew3{
-    transform: skewX(25deg);
-}
-.textoCarrousel{
-    display: flex;
-    text-align: start;
-    position: absolute;
-    left: auto;
-    top: 0%;
-    background-color: transparent;
-    color: #bbb;
-    // color: black;
-    z-index: 2;
-}
-.fontAmatic{
-    font-family: 'Amatic SC', cursive;
-
-}
-.fontAnton{
-    font-family: 'Anton', sans-serif;
-    text-shadow: .05rem .05rem 0 #777;
-}
-
-.cositas{
-    position: relative;
-    color: #333;
-    &::before{
-        content: "";
-        transform: skewX(350deg);
-        z-index: -1;
-        background-color: #bbb;
-        width: 140%;
-        height: 100%;
+    padding-top: 4rem;
+    .carrousel-inner{
         overflow: hidden;
-        position:absolute;
+        img{
+            object-fit: contain;
+        }
+    }
+    .fondo{
+        background-color: $grisOscuro;
+        width: 80%;
+        height: 100%;
+        position: absolute;
         top: 0;
         right: -20%;
+        body.darkMode &{
+            background-color: $sombrasClaras;
+            // color: $grisOscuro;
+            // box-shadow:  ;
+        }
+    }
+    
+    .skew1{
+        transform: skewX(15deg);
+    }
+    
+    .skew2{
+        transform: skewX(-30deg);
+    }
+    
+    .skew3{
+        transform: skewX(25deg);
+    }
+    .textoCarrousel{
+        display: flex;
+        text-align: start;
+        position: absolute;
         left: auto;
-    }
-}
-.imgCositas{
-    object-fit: cover;
-    z-index: -2;
-}
-
-.menuDesplegado{
-    // background-color: transparent;
-    backdrop-filter: blur(14px);
-    padding: .5rem;
-
-    // transition: 1.3s;
-    
-    border: .1rem #bbb;
-    border-style: none solid solid none;
-    border-radius: 10px;
-    
-
-    position:fixed;
-    top:0;
-    right: 7%;
-
-
-    display:flex;
-    flex-direction: row-reverse;
-
-
-    z-index: 4;
-
-    .imagen-Menu{
-        @include img-cabecera;
-        margin: 0.5rem;
-    }
-    ul{
-        li{
-            @include lista-nav;
-            a{
-                text-decoration: none;
-                color:#333;
-            }
-            &:hover{
-                transform: scale(1.2);
-            }
+        top: 0%;
+        background-color: transparent;
+        color: $sombrasClaras;
+        // color: black;
+        z-index: 2;
+        body.darkMode &{
+            // background-color: $sombrasClaras;
+            color: $grisOscuro;
+            // box-shadow:  ;
         }
     }
-}
-.fotoYLoggin{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.contenedorBotones{
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    a{
-        text-decoration: none;
-        color: #333;
-        font-family: 'Amatic SC', cursive;
-
-        background-color: rgba(204, 204, 204, 0.2);
-        backdrop-filter: blur(3px);
-        padding: 0.2rem;
-        
-        border: .1rem rgba(204, 204, 204, 0.856);
-        border-radius: 10px;
-        border-style: none solid solid none;
-
-        cursor: pointer;
-        pointer-events: all;
-
-        margin-left: .5rem;
-        margin-right: .5rem;
-        
-        text-shadow: none;
-        transition: .3s;
-        &:hover{
-            background-color: rgba(254, 254, 254, 0.2);
-            transform: scale(1.1);
+    .fontAmatic{
+        font-family: $fuenteInformal;
+    
+    }
+    .fontAnton{
+        font-family: $fuenteSeria;
+        text-shadow: .05rem .05rem 0 #777;
+    }
+    .paraPirin{
+        p, h2, ul, li{
+            margin-left: 2rem;
+            position: relative;
+            top:0;
+            left: 10;
+            color: $grisOscuro;
+            background-color: transparent;
+            z-index: 2;
+        } 
+    }
+    .fondoParaPirin{
+        position: relative;
+        &::before{
+            content: "";
+            transform: skewX(350deg);
+            z-index: 1;
+            background-color: $sombrasClaras;
+            width: 100vw;
+            height: 100%;
+            overflow: hidden;
+            position:absolute;
+            top: 0;
+            right:-15vw;
         }
     }
-}
-.escondido{
-    // transition: 0s;
-    // // transform: scale(.01);
-    position: absolute;
-    right: -100%;
-    // visibility: hidden;
-    // width: 0;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.mod{
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(33, 33, 33, 0.856);
-    
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    display: flex;
-    place-items: center;
-    // pointer-events: none;
-
-    z-index: 10;
-    .modalContainer{
-        display: flexbox;
-        justify-content: center;
-        transform: translate(50%);
-    
-        padding: 1rem;
-        border-radius: 1rem;
-        background-color: #bbb;
-        width: auto;
-        h2{
-            font-family: 'Anton', sans-serif;
-            font-size:2rem;
-            text-shadow: .2rem .2rem 0 #fff;
-        }
-        
-        .contenedorInput{
-            
-            text-align:end;
-            margin: .5rem;
-            label{
-                font-family: 'Amatic SC', cursive;
-                font-size:1rem;
-                margin-right: 0.5rem;
-            }
-            input{
-                width: 35vw;
-                font-family: 'Anton', sans-serif;
-            }
-
-        }
-        .botonera{
-            display: flex;
-            justify-content: flex-end;
-            a{
-                text-decoration: none;
-                color: #333;
-                font-family: 'Amatic SC', cursive;
-    
-                background-color: rgba(204, 204, 204, 0.2);
-                backdrop-filter: blur(3px);
-                padding: 0.2rem;
-                
-                border: .1rem rgba(204, 204, 204, 0.856);
-                border-radius: 10px;
-                border-style: none solid solid none;
-    
-                margin-left: .5rem;
-                margin-right: .5rem;
-                
-                text-shadow: none;
-                transition: .3s;
-                &:hover{
-                    background-color: rgba(254, 254, 254, 0.2);
-                    transform: scale(1.2);
-                }
-            }
-        }
+    .imgCositas{
+        object-fit: cover;
+        z-index: 0;
     }
 }
+
+@import "./scss/jugueteoJSMenu";
+
+@import "./scss/modalLoggin";

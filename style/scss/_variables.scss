@@ -1,0 +1,49 @@
+
+$fuenteSeria: 'Anton', sans-serif;
+$fuenteInformal: 'Amatic SC', cursive;
+
+$sombrasClaras: #bbb; //Cambiar a GrisClaro
+$grisOscuro: #333;
+$blanco: #fff;
+
+
+@mixin darkModeLetrasClaras{
+    color:$sombrasClaras;
+}
+
+@mixin darkModeTitulos {
+    color: $blanco;
+    text-shadow: .2rem .2rem 0 black;
+}
+
+@mixin img-cabecera{
+    height: 2rem;
+    // aspect-ratio: 1/1;
+    width: 2rem;
+    border-radius: 50%;
+    object-fit:cover;
+}
+
+
+@mixin lista-nav{
+    padding: 0.2rem;
+    list-style: none;
+    text-decoration: none;
+
+    border-radius: 10%;
+
+    font-family: $fuenteInformal;
+    font-size:1rem;
+    text-shadow: 0 0 .5rem $sombrasClaras,
+                    0 0 .3rem $sombrasClaras;
+
+    // font-size: 0.6rem;
+    transition: .3s;
+    body.darkMode &{
+        color: $sombrasClaras;
+        text-shadow: 0 0 .5rem $grisOscuro,
+                    0 0 .4rem $grisOscuro,
+                    0 0 .2rem $grisOscuro;
+    }
+}
+

@@ -64,6 +64,14 @@ const botonesUsuario = [
 let menuUsuarioDesplegado = false;
 
 
+const darkMode = () => {
+    const btnDarkMode = document.querySelector('[data-btn="darkMode"]');
+    btnDarkMode.addEventListener("click", () => {
+        const body = document.querySelector("body");
+        body.classList.toggle("darkMode");
+    })
+} 
+
 //Genera foto deslogeado
 const generarFotoAnonimo = (img) => {
     img.src = "./img/user-pic-default.png";
@@ -73,8 +81,8 @@ const generarFotoAnonimo = (img) => {
 //Genera foto usuario cuando hay una cargada en el JSON. Sino, asigna la foto de deslogeado
 const generarFotoUsuario = async (img) => {
     const usuarios = await cargarCuentasJson ();
-    img.src= usuarios[usuarioLogeado].foto
-    img.src === "http://127.0.0.1:5500/index.html" && (img.src = generarFotoAnonimo(img));
+    img.src= usuarios[usuarioLogeado].foto;
+    img.src === "http://127.0.0.1:5500/" && (img.src = generarFotoAnonimo(img));
     return(img.src)
 
 }
@@ -82,7 +90,6 @@ const generarFotoUsuario = async (img) => {
 //Si el usuario esta logeado, crea la foto en el head
 const generarFotoUsuarioCorrespondiente = async () => {
     const avatar = document.querySelector(".userPic");
-    const usuarios = await cargarCuentasJson();
     logeado? (avatar.src = generarFotoUsuario(avatar)) : avatar.src=generarFotoAnonimo(avatar);
 } 
 
@@ -360,6 +367,8 @@ const toogleMenu = () => {
 
 // generarModal(textosModal[0], textosModal[0]);
 
+
+darkMode();
 generarFotoUsuarioCorrespondiente()
 generarMenu();
 triggerMenu.addEventListener("click", toogleMenu)

@@ -1,0 +1,98 @@
+
+.menuDesplegado{
+    // background-color: transparent;
+    backdrop-filter: blur(14px);
+    padding: .5rem;
+
+    // transition: 1.3s;
+    
+    border: .1rem $sombrasClaras;
+    border-style: none solid solid none;
+    border-radius: 10px;
+    
+
+    position:fixed;
+    top:0;
+    right: 7%;
+
+
+    display:flex;
+    flex-direction: row-reverse;
+
+
+    z-index: 4;
+
+    .imagen-Menu{
+        @include img-cabecera;
+        margin: 0.5rem;
+    }
+    ul{
+        li{
+            @include lista-nav;
+            a{
+                text-decoration: none;
+                color:$grisOscuro;
+                body.darkMode &{
+                    @include darkModeLetrasClaras; 
+                }
+            }
+            &:hover{
+                transform: scale(1.2);
+            }
+        }
+    }
+}
+.fotoYLoggin{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.contenedorBotones{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    a{
+        text-decoration: none;
+        color: $grisOscuro;
+        font-family: $fuenteInformal;
+
+        background-color: rgba(204, 204, 204, 0.2);
+        backdrop-filter: blur(3px);
+        padding: 0.2rem;
+        
+        border: .1rem rgba(204, 204, 204, 0.856);
+        border-radius: 10px;
+        border-style: none solid solid none;
+
+        cursor: pointer;
+        pointer-events: all;
+
+        margin-left: .5rem;
+        margin-right: .5rem;
+        
+        text-shadow: none;
+        transition: .3s;
+        body.darkMode &{
+            @include darkModeLetrasClaras; 
+            background-color: $grisOscuro;
+            // backdrop-filter: opacity(20%)
+        }
+        &:hover{
+            background-color: rgba(254, 254, 254, 0.2);
+            transform: scale(1.1);
+            body.darkMode &{
+                color: $sombrasClaras;
+            }
+        }
+    }
+}
+.escondido{
+    // transition: 0s;
+    // // transform: scale(.01);
+    position: absolute;
+    right: -100%;
+    // visibility: hidden;
+    // width: 0;
+    opacity: 0;
+    pointer-events: none;
+}
